@@ -56,3 +56,16 @@ License
 The Ultimate Tic Tac Toe game is distributed under the MIT License. You can review the specific terms and conditions in the LICENSE file.
 
 Enjoy playing Ultimate Tic Tac Toe!
+
+
+To Do
+Top Priority
+--Disable Buttons after win
+--format buttons
+--make winning squares look better
+--X turn and O turn display
+
+Low Priority
+--Make Blue Highlight look better
+--Play again button (refresh page)
+--display who won
