@@ -57,6 +57,11 @@ function switchPlayers(){
 }
 
 function makeClickable(buttonId){
+    // Disable the grid from clicking
+    var allButtons = document.getElementById('container').getElementsByTagName('button');
+    for (var i = 0; i < allButtons.length; i++) {
+        allButtons[i].style.pointerEvents = 'none';
+    }
     // clickableZone = second buttonId number
     var charArray = buttonId.split(""); // Convert string to array of characters
     var clickableZone = charArray[1]; // Access the second element of the array
