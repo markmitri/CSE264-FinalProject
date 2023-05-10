@@ -45,11 +45,12 @@ function checkDraw(){
 
 function switchPlayers(){
     if(currentPlayer == "X"){
-        currentPlayer == "O";
+        currentPlayer = "O";
+        console.log(currentPlayer);
         return;
     }
     if(currentPlayer == "O"){
-        currentPlayer == "X";
+        currentPlayer = "X";
         return;
     }
 }
