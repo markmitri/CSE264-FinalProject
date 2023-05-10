@@ -105,7 +105,8 @@ cell00.onclick = function (evt) {
     button.parentNode.replaceChild(textNode, button);
 }
 
-box.onclick = function (evt){
+/*box.onclick = function (evt){
+    console.log("general btn pressed");
     var buttonId = evt.target.id;
     console.log("Button:", buttonId, " Clicked!");
     var button = document.getElementById(buttonId);
@@ -113,8 +114,20 @@ box.onclick = function (evt){
     var textNode = document.createTextNode('X');
     // Replace the button with the text node
     button.parentNode.replaceChild(textNode, button);
-}
+}*/
 
+for(let i = 0; i < box.length; i++){
+    box[i].onclick = function(evt){
+        console.log("general btn pressed");
+        var buttonId = evt.target.id;
+        console.log("Button:", buttonId, " Clicked!");
+        var button = document.getElementById(buttonId);
+        // Create a new text node
+        var textNode = document.createTextNode('X');
+        // Replace the button with the text node
+        button.parentNode.replaceChild(textNode, button);
+    }
+}
 // function initializeBoard(row,col){
 //     var arr = Array(row);
 //     for(var i=0;i<row;i++){
