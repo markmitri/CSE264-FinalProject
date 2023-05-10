@@ -11,55 +11,7 @@
     margin:auto;
 }
 
-.box1{
-    background-color:white;
-    border:none;
-    width:20px;
-    height:20px;
-}
-.box2{
-    background-color:white;
-    border:none;
-    width:20px;
-    height:20px;
-}
-.box3{
-    background-color:white;
-    border:none;
-    width:20px;
-    height:20px;
-}
-.box4{
-    background-color:white;
-    border:none;
-    width:20px;
-    height:20px;
-}
-.box5{
-    background-color:white;
-    border:none;
-    width:20px;
-    height:20px;
-}
-.box6{
-    background-color:white;
-    border:none;
-    width:20px;
-    height:20px;
-}
-.box7{
-    background-color:white;
-    border:none;
-    width:20px;
-    height:20px;
-}
-.box8{
-    background-color:white;
-    border:none;
-    width:20px;
-    height:20px;
-}
-.box9{
+.box{
     background-color:white;
     border:none;
     width:20px;
