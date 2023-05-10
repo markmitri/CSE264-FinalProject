@@ -19,7 +19,7 @@ for(let i = 0; i < box.length; i++){
         printBoard(arr);
         // Replace the button with the text node
         button.parentNode.replaceChild(textNode, button);
-        checkSmallWin(arr);
+        checkSmallWin(arr, buttonId);
         switchPlayers();
         makeClickable(buttonId);
     }
@@ -37,8 +37,10 @@ function initializeBoard(row,col){
     return arr;
 }
 
-function checkSmallWin(arr){
-    if(arr[0][0]==arr[0][1]==arr[0][2]=="X"){
+function checkSmallWin(arr, buttonId){
+    var charArray = buttonId.split(""); // Convert string to array of characters
+    var first = charArray[0]; // Access the second element of the array
+    if(arr[first][0]==arr[first][1]==arr[first][2]=="X"){
         console.log("X WINS!!!!");
     }
 }
