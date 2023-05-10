@@ -121,4 +121,8 @@ function makeClickable(buttonId){
     for (var i = 0; i < enableButtons.length; i++) {
         enableButtons[i].style.pointerEvents = 'auto';
     }
+    for(var i = 0; i <9; i++){
+        document.getElementById('bigBox'+i).className = "unclickable";
+    }
+    document.getElementById('bigBox'+clickableZone).className = "clickable";
 }
