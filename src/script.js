@@ -2,6 +2,7 @@ let board = [[]]; // game board representation
 const row = 9; const col = 9;
 let currentPlayer = 0; // 0 = "X", 1 = "O"
 
+const box = document.getElementsByClassName("box");
 const cell00 = document.getElementById("00");
 const cell01 = document.getElementById("01");
 const cell02 = document.getElementById("02");
@@ -98,6 +99,16 @@ const cell98 = document.getElementById("98");
 cell00.onclick = function (evt) {
     console.log("button pressed");
     var button = document.getElementById('00');
+    // Create a new text node
+    var textNode = document.createTextNode('X');
+    // Replace the button with the text node
+    button.parentNode.replaceChild(textNode, button);
+}
+
+box.onclick = function (evt){
+    var buttonId = evt.target.id;
+    console.log("Button:", buttonId, " Clicked!");
+    var button = document.getElementById(buttonId);
     // Create a new text node
     var textNode = document.createTextNode('X');
     // Replace the button with the text node
