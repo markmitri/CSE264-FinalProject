@@ -16,6 +16,7 @@ for(let i = 0; i < box.length; i++){
         // Replace the button with the text node
         button.parentNode.replaceChild(textNode, button);
         switchPlayers();
+        makeClickable(buttonId);
     }
 }
 
@@ -53,4 +54,13 @@ function switchPlayers(){
         currentPlayer = "X";
         return;
     }
+}
+
+function makeClickable(buttonId){
+    // clickableZone = second buttonId number
+    var charArray = buttonId.split(""); // Convert string to array of characters
+    var clickableZone = charArray[1]; // Access the second element of the array
+    console.log("Second number:", clickableZone);
+    // get div id based on clickableZone
+    // set div style as clickable
 }
