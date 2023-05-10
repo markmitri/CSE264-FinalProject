@@ -62,10 +62,12 @@ function makeClickable(buttonId){
     for (var i = 0; i < allButtons.length; i++) {
         allButtons[i].style.pointerEvents = 'none';
     }
-    // clickableZone = second buttonId number
     var charArray = buttonId.split(""); // Convert string to array of characters
     var clickableZone = charArray[1]; // Access the second element of the array
     console.log("Second number:", clickableZone);
-    // get div id based on clickableZone
-    // set div style as clickable
+    // Enable only the clickableZone
+    var enableButtons = document.getElementById('bigBox[clickableZone]').getElementsByTagName('button');
+    for (var i = 0; i < enableButtons.length; i++) {
+        enableButtons[i].style.pointerEvents = 'auto';
+    }
 }
