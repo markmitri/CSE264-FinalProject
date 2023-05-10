@@ -40,7 +40,7 @@ function initializeBoard(row,col){
 function checkSmallWin(arr, buttonId){
     var charArray = buttonId.split(""); // Convert string to array of characters
     var first = charArray[0]; // Access the second element of the array
-    if(arr[first][0]==arr[first][1]==arr[first][2]=="X"){
+    if(arr[first][0]=="X" && arr[first][1]=="X" && arr[first][2]=="X"){
         console.log("X WINS!!!!");
     }
 }
@@ -56,7 +56,6 @@ function checkDraw(){
 function switchPlayers(){
     if(currentPlayer == "X"){
         currentPlayer = "O";
-        console.log(currentPlayer);
         return;
     }
     if(currentPlayer == "O"){
