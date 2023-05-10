@@ -4,36 +4,42 @@ let currentPlayer = "X";
 
 const box = document.getElementsByClassName("box");
 
-// initializeBoard(row,col);
-
 for(let i = 0; i < box.length; i++){
+    initializeBoard(row,col);
     box[i].onclick = function(evt){
         var buttonId = evt.target.id;
         console.log("Button ", buttonId, " Clicked!");
         var button = document.getElementById(buttonId);
         // Create a new text node
         var textNode = document.createTextNode(currentPlayer);
+        var charArray = buttonId.split(""); // Convert string to array of characters
+        var first = charArray[0]; // Access the first element of the array
+        var second = charArray[1]; // Access the second element of the array
+        arr[first][second] = currentPlayer;
+        printBoard(arr);
         // Replace the button with the text node
         button.parentNode.replaceChild(textNode, button);
+        checkSmallWin(buttonId);
         switchPlayers();
         makeClickable(buttonId);
     }
 }
 
-// function initializeBoard(row,col){
-//     var arr = Array(row);
-//     for(var i=0;i<row;i++){
-//         arr[i]=Array(col).fill(0);
-//     }
-//     console.log(arr);
-//     console.log(arr[1][2]);
-// }
+function printBoard(arr){
+    console.table(arr);
+}
 
-function checkSmallWin(){
-    for(let i=0;i<9;i++){
-        for(let j=0;j<9;j++){
-        }
+function initializeBoard(row,col){
+    var arr = Array(row);
+    for(var i=0;i<row;i++){
+        arr[i]=Array(col).fill(2); // 2 means not clicked
     }
+}
+
+function checkSmallWin(buttonId){
+    var charArray = buttonId.split(""); // Convert string to array of characters
+    var smallZone = charArray[0]; // Access the second element of the array
+    console.log("First number:", smallZone);
 }
 
 function checkLargeWin(){
@@ -66,8 +72,6 @@ function makeClickable(buttonId){
     var clickableZone = charArray[1]; // Access the second element of the array
     console.log("Second number:", clickableZone);
     // Enable only the clickableZone
-    //var enableButtons = document.getElementById('bigBox[clickableZone]').getElementsByTagName('button');
-    //var enableButtons = bigBoxes[clickableZone].getElementsByTagName('button');
     var enableButtons = document.getElementById('bigBox'+clickableZone).getElementsByTagName('button');
     for (var i = 0; i < enableButtons.length; i++) {
         enableButtons[i].style.pointerEvents = 'auto';
