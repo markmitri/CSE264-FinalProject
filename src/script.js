@@ -66,7 +66,9 @@ function makeClickable(buttonId){
     var clickableZone = charArray[1]; // Access the second element of the array
     console.log("Second number:", clickableZone);
     // Enable only the clickableZone
-    var enableButtons = document.getElementById('bigBox[clickableZone]').getElementsByTagName('button');
+    //var enableButtons = document.getElementById('bigBox[clickableZone]').getElementsByTagName('button');
+    //var enableButtons = bigBoxes[clickableZone].getElementsByTagName('button');
+    var enableButtons = document.getElementById('bigBox'+clickableZone).getElementsByTagName('button');
     for (var i = 0; i < enableButtons.length; i++) {
         enableButtons[i].style.pointerEvents = 'auto';
     }
