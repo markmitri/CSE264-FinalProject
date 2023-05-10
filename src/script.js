@@ -2,10 +2,10 @@ let board = [[]]; // game board representation
 const row = 9; const col = 9;
 let currentPlayer = "X";
 let arr = initializeBoard(row,col);
+
 const box = document.getElementsByClassName("box");
 
 for(let i = 0; i < box.length; i++){
-    //initializeBoard(row,col);
     box[i].onclick = function(evt){
         var buttonId = evt.target.id;
         console.log("Button ", buttonId, " Clicked!");
@@ -19,7 +19,7 @@ for(let i = 0; i < box.length; i++){
         printBoard(arr);
         // Replace the button with the text node
         button.parentNode.replaceChild(textNode, button);
-        checkSmallWin(buttonId);
+        checkSmallWin(arr);
         switchPlayers();
         makeClickable(buttonId);
     }
@@ -37,10 +37,10 @@ function initializeBoard(row,col){
     return arr;
 }
 
-function checkSmallWin(buttonId){
-    var charArray = buttonId.split(""); // Convert string to array of characters
-    var smallZone = charArray[0]; // Access the second element of the array
-    console.log("First number:", smallZone);
+function checkSmallWin(arr){
+    if(arr[0][0]==arr[0][1]==arr[0][2]=="X"){
+        console.log("X WINS!!!!");
+    }
 }
 
 function checkLargeWin(){
