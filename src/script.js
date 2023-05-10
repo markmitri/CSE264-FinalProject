@@ -1,11 +1,11 @@
 let board = [[]]; // game board representation
 const row = 9; const col = 9;
 let currentPlayer = "X";
-
+let arr = initializeBoard(row,col);
 const box = document.getElementsByClassName("box");
 
 for(let i = 0; i < box.length; i++){
-    initializeBoard(row,col);
+    //initializeBoard(row,col);
     box[i].onclick = function(evt){
         var buttonId = evt.target.id;
         console.log("Button ", buttonId, " Clicked!");
@@ -26,7 +26,7 @@ for(let i = 0; i < box.length; i++){
 }
 
 function printBoard(arr){
-    console.table(arr);
+    console.log(arr);
 }
 
 function initializeBoard(row,col){
@@ -34,6 +34,7 @@ function initializeBoard(row,col){
     for(var i=0;i<row;i++){
         arr[i]=Array(col).fill(2); // 2 means not clicked
     }
+    return arr;
 }
 
 function checkSmallWin(buttonId){
