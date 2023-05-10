@@ -53,6 +53,9 @@ function checkSmallWin(arr, buttonId, winArr){
        arr[first][2]=="X" && arr[first][4]=="X" && arr[first][6]=="X" ){ // small diagonal 2
         console.log("X wins board ", first);
         winArr[first] = "X";
+        const bigBox = document.getElementById("bigBox"+first);
+        var text = "X";
+        bigBox.innerHTML = text;
     }
     if(arr[first][0]=="O" && arr[first][1]=="O" && arr[first][2]=="O" || // first small row
        arr[first][3]=="O" && arr[first][4]=="O" && arr[first][5]=="O" || // second smallrow
@@ -64,6 +67,9 @@ function checkSmallWin(arr, buttonId, winArr){
        arr[first][2]=="O" && arr[first][4]=="O" && arr[first][6]=="O" ){ // small diagonal 2
         console.log("O wins board ", first);
         winArr[first] = "O";
+        const bigBox = document.getElementById("bigBox"+first);
+        var text = "O";
+        bigBox.innerHTML = text;
     }
 }
 
