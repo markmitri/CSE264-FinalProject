@@ -3,7 +3,7 @@ const row = 9; const col = 9;
 let currentPlayer = "X";
 let arr = initializeBoard(row,col);
 let winArr = [];
-let XWin = false; let OWin = false; let largeTie = false; let smallTie = false;
+var XWin = false; var OWin = false; var largeTie = false; var smallTie = false;
 
 const box = document.getElementsByClassName("box");
 
@@ -25,6 +25,10 @@ for(let i = 0; i < box.length; i++){
         checkLargeWin(winArr, XWin, OWin, largeTie);
         switchPlayers();
         makeClickable(buttonId);
+        if(XWin || OWin || largeTie){
+            console.log("Ending game...");
+            endGame(XWin, OWin, largeWin);
+        }
     }
 }
 
@@ -51,7 +55,6 @@ function checkSmallWin(arr, buttonId, winArr, smallTie){
        arr[first][2]=="X" && arr[first][5]=="X" && arr[first][8]=="X" || // third small column
        arr[first][0]=="X" && arr[first][4]=="X" && arr[first][8]=="X" || // small diagonal 1
        arr[first][2]=="X" && arr[first][4]=="X" && arr[first][6]=="X" ){ // small diagonal 2
-        console.log("X wins board ", first);
         winArr[first] = "X";
         const bigBox = document.getElementById("bigBox"+first);
         var text = "X";
@@ -64,13 +67,11 @@ function checkSmallWin(arr, buttonId, winArr, smallTie){
        arr[first][2]=="O" && arr[first][5]=="O" && arr[first][8]=="O" || // third small column
        arr[first][0]=="O" && arr[first][4]=="O" && arr[first][8]=="O" || // small diagonal 1
        arr[first][2]=="O" && arr[first][4]=="O" && arr[first][6]=="O" ){ // small diagonal 2
-        console.log("O wins board ", first);
         winArr[first] = "O";
         const bigBox = document.getElementById("bigBox"+first);
         var text = "O";
         bigBox.innerHTML = text;
     }else{
-        console.log("Small tie in board ", first);
         smallTie = true;
     }
 }
@@ -84,8 +85,8 @@ function checkLargeWin(winArr, XWin, OWin, largeTie){
        winArr[2]=="X" && winArr[5]=="X" && winArr[8]=="X" || // third large column
        winArr[0]=="X" && winArr[4]=="X" && winArr[8]=="X" || // large diagonal 1
        winArr[2]=="X" && winArr[4]=="X" && winArr[8]=="X" ){ // large diagonal 2
-        console.log("X Wins game");
         XWin = true; OWin = false; largeTie = false;
+        console.log("XWin: ", XWin); console.log("OWin: ", OWin); console.log("LargeTie: ", largeTie);
     }else if(winArr[0]=="O" && winArr[1]=="O" && winArr[2]=="O" || // first large row
        winArr[3]=="O" && winArr[4]=="O" && winArr[5]=="O" || // second large row
        winArr[6]=="O" && winArr[7]=="O" && winArr[8]=="O" || // third large row
@@ -94,11 +95,101 @@ function checkLargeWin(winArr, XWin, OWin, largeTie){
        winArr[2]=="O" && winArr[5]=="O" && winArr[8]=="O" || // third large column
        winArr[0]=="O" && winArr[4]=="O" && winArr[8]=="O" || // large diagonal 1
        winArr[2]=="O" && winArr[4]=="O" && winArr[8]=="O" ){ // large diagonal 2
-        console.log("O Wins game");
-        XWin = false; OWin = true;; largeTie = false;
+        XWin = false; OWin = true; largeTie = false;
+        console.log("XWin: ", XWin); console.log("OWin: ", OWin); console.log("LargeTie: ", largeTie);
     }else{
-        console.log("Tie game. No One wins");
         XWin = false; OWin = false; largeTie = true;
+        console.log("XWin: ", XWin); console.log("OWin: ", OWin); console.log("LargeTie: ", largeTie);
+    }
+}
+
+function endGame(XWin, OWin, largeTie){
+    if(XWin){
+        // Disable all buttons
+        var allButtons = document.getElementById('container').getElementsByTagName('button');
+        for (var i = 0; i < allButtons.length; i++) {
+            allButtons[i].style.pointerEvents = 'none';
+        }
+        // Display that X Won
+        // Create the <div> element
+        var div = document.createElement('div');
+        // Create the <p> element
+        var p = document.createElement('p');
+        p.textContent = 'X Won Ultimate TicTacToe!';
+        // Append the <p> element to the <div> element
+        div.appendChild(p);
+        // Add any necessary styling or class to the <div> element
+        div.style.fontWeight = 'bold';
+        div.style.color = 'blue';
+        // Append the <div> element to the document body or any other parent element
+        document.body.appendChild(div);
+        // Display play again button
+        // Create the "Play Again" button
+        var button = document.createElement('button');
+        button.textContent = 'Play Again?';
+        // Add a click event listener to the button
+        button.addEventListener('click', function() {
+            // Refresh the page
+            location.reload();
+        });
+    }
+    if(OWin){
+        // Disable all buttons
+        var allButtons = document.getElementById('container').getElementsByTagName('button');
+        for (var i = 0; i < allButtons.length; i++) {
+            allButtons[i].style.pointerEvents = 'none';
+        }
+        // Display that O Won
+        // Create the <div> element
+        var div = document.createElement('div');
+        // Create the <p> element
+        var p = document.createElement('p');
+        p.textContent = 'O Won Ultimate TicTacToe!';
+        // Append the <p> element to the <div> element
+        div.appendChild(p);
+        // Add any necessary styling or class to the <div> element
+        div.style.fontWeight = 'bold';
+        div.style.color = 'blue';
+        // Append the <div> element to the document body or any other parent element
+        document.body.appendChild(div);
+        // Display play again button
+        // Create the "Play Again" button
+        var button = document.createElement('button');
+        button.textContent = 'Play Again?';
+        // Add a click event listener to the button
+        button.addEventListener('click', function() {
+            // Refresh the page
+            location.reload();
+        });
+    }
+    if(largeTie){
+        // Disable all buttons
+        var allButtons = document.getElementById('container').getElementsByTagName('button');
+        for (var i = 0; i < allButtons.length; i++) {
+            allButtons[i].style.pointerEvents = 'none';
+        }
+        // Display that there was a tie
+        // Create the <div> element
+        var div = document.createElement('div');
+        // Create the <p> element
+        var p = document.createElement('p');
+        p.textContent = 'There was a Tie!';
+        // Append the <p> element to the <div> element
+        div.appendChild(p);
+        // Add any necessary styling or class to the <div> element
+        div.style.fontWeight = 'bold';
+        div.style.color = 'blue';
+        // Append the <div> element to the document body or any other parent element
+        document.body.appendChild(div);
+        // Display play again button
+        // Create the "Play Again" button
+        var button = document.createElement('button');
+        button.textContent = 'Play Again?';
+        // Add a click event listener to the button
+        button.addEventListener('click', function() {
+            // Refresh the page
+            location.reload();
+        });
     }
 }
 
