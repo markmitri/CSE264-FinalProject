@@ -104,12 +104,12 @@ function checkLargeWin(winArr, XWin, OWin, largeTie){
 }
 
 function endGame(XWin, OWin, largeTie){
+    // Disable all buttons
+    var allButtons = document.getElementById('container').getElementsByTagName('button');
+    for (var i = 0; i < allButtons.length; i++) {
+        allButtons[i].style.pointerEvents = 'none';
+    }
     if(XWin){
-        // Disable all buttons
-        var allButtons = document.getElementById('container').getElementsByTagName('button');
-        for (var i = 0; i < allButtons.length; i++) {
-            allButtons[i].style.pointerEvents = 'none';
-        }
         // Display that X Won
         // Create the <div> element
         var div = document.createElement('div');
@@ -132,13 +132,9 @@ function endGame(XWin, OWin, largeTie){
             // Refresh the page
             location.reload();
         });
+        return;
     }
     if(OWin){
-        // Disable all buttons
-        var allButtons = document.getElementById('container').getElementsByTagName('button');
-        for (var i = 0; i < allButtons.length; i++) {
-            allButtons[i].style.pointerEvents = 'none';
-        }
         // Display that O Won
         // Create the <div> element
         var div = document.createElement('div');
@@ -161,13 +157,9 @@ function endGame(XWin, OWin, largeTie){
             // Refresh the page
             location.reload();
         });
+        return;
     }
     if(largeTie){
-        // Disable all buttons
-        var allButtons = document.getElementById('container').getElementsByTagName('button');
-        for (var i = 0; i < allButtons.length; i++) {
-            allButtons[i].style.pointerEvents = 'none';
-        }
         // Display that there was a tie
         // Create the <div> element
         var div = document.createElement('div');
@@ -190,6 +182,7 @@ function endGame(XWin, OWin, largeTie){
             // Refresh the page
             location.reload();
         });
+        return;
     }
 }
 
