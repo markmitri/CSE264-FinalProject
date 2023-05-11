@@ -60,6 +60,7 @@ Enjoy playing Ultimate Tic Tac Toe!
 
 To Do
 Top Priority
+--Check for tie conditions
 --Disable Buttons after win
 --format buttons
 --make winning squares look better
