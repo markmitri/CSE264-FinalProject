@@ -54,8 +54,7 @@ function checkSmallWin(arr, buttonId, winArr, smallTie){
         const bigBox = document.getElementById("bigBox"+first);
         var text = "X";
         bigBox.innerHTML = text;
-    }
-    if(arr[first][0]=="O" && arr[first][1]=="O" && arr[first][2]=="O" || // first small row
+    }else if(arr[first][0]=="O" && arr[first][1]=="O" && arr[first][2]=="O" || // first small row
        arr[first][3]=="O" && arr[first][4]=="O" && arr[first][5]=="O" || // second smallrow
        arr[first][6]=="O" && arr[first][7]=="O" && arr[first][8]=="O" || // third small row
        arr[first][0]=="O" && arr[first][3]=="O" && arr[first][6]=="O" || // first small column
@@ -67,8 +66,7 @@ function checkSmallWin(arr, buttonId, winArr, smallTie){
         const bigBox = document.getElementById("bigBox"+first);
         var text = "O";
         bigBox.innerHTML = text;
-    }
-    if(/* condition for tie*/){
+    }else{
         smallTie = true;
     }
 }
@@ -86,8 +84,7 @@ function checkLargeWin(winArr, XWin, OWin, largeTie){
         XWin = true; OWin = false; largeTie = false;
         console.log("XWin: ", XWin); console.log("OWin: ", OWin); console.log("LargeTie: ", largeTie);
         endGame(XWin, OWin, largeTie);
-    }
-    if(winArr[0]=="O" && winArr[1]=="O" && winArr[2]=="O" || // first large row
+    }else if(winArr[0]=="O" && winArr[1]=="O" && winArr[2]=="O" || // first large row
        winArr[3]=="O" && winArr[4]=="O" && winArr[5]=="O" || // second large row
        winArr[6]=="O" && winArr[7]=="O" && winArr[8]=="O" || // third large row
        winArr[0]=="O" && winArr[3]=="O" && winArr[6]=="O" || // first large column
@@ -99,15 +96,16 @@ function checkLargeWin(winArr, XWin, OWin, largeTie){
         XWin = false; OWin = true; largeTie = false;
         console.log("XWin: ", XWin); console.log("OWin: ", OWin); console.log("LargeTie: ", largeTie);
         endGame(XWin, OWin, largeTie);
-    }
-    for (var i = 0; i < winArr.length; i++) {
-        if (winArr[i] === '') {
-            console.log(winArr);
-            console.log("winArr length: ", winArr.length);
-            XWin = false; OWin = false; largeTie = true;
-            console.log("XWin: ", XWin); console.log("OWin: ", OWin); console.log("LargeTie: ", largeTie);
-            endGame(XWin, OWin, largeTie);
-        }
+    }else{
+       for (var i = 0; i < winArr.length; i++) {
+            if (winArr[i] === '') {
+                console.log(winArr);
+                console.log("winArr length: ", winArr.length);
+                XWin = false; OWin = false; largeTie = true;
+                console.log("XWin: ", XWin); console.log("OWin: ", OWin); console.log("LargeTie: ", largeTie);
+                endGame(XWin, OWin, largeTie);
+            }
+        } 
     }
 }
 
@@ -136,13 +134,15 @@ function endGame(XWin, OWin, largeTie){
         var button = document.createElement('button');
         button.textContent = 'Play Again?';
         // Add a click event listener to the button
-        button.addEventListener('click', function() {
-            // Refresh the page
-            location.reload();
-        });
-        return;
-    }
-    if(OWin){
+        let clickButton = true;
+        while(clickButton){
+            button.addEventListener('click', function() {
+                // Refresh the page
+                location.reload();
+            });
+            return;
+        }
+    }else if(OWin){
         // Display that O Won
         // Create the <div> element
         var div = document.createElement('div');
@@ -161,13 +161,15 @@ function endGame(XWin, OWin, largeTie){
         var button = document.createElement('button');
         button.textContent = 'Play Again?';
         // Add a click event listener to the button
-        button.addEventListener('click', function() {
-            // Refresh the page
-            location.reload();
-        });
-        return;
-    }
-    if(largeTie){
+        let clickButton = true;
+        while(clickButton){
+            button.addEventListener('click', function() {
+                // Refresh the page
+                location.reload();
+            });
+            return;
+        }
+    }else if(largeTie){
         // Display that there was a tie
         // Create the <div> element
         var div = document.createElement('div');
@@ -186,11 +188,14 @@ function endGame(XWin, OWin, largeTie){
         var button = document.createElement('button');
         button.textContent = 'Play Again?';
         // Add a click event listener to the button
-        button.addEventListener('click', function() {
-            // Refresh the page
-            location.reload();
-        });
-        return;
+        let clickButton = true;
+        while(clickButton){
+            button.addEventListener('click', function() {
+                // Refresh the page
+                location.reload();
+            });
+            return;
+        }
     }
 }
 
