@@ -2,29 +2,32 @@ const row = 9; const col = 9;
 let currentPlayer = "X";
 let arr = initializeBoard(row,col);
 let winArr = [];
-var XWin = false; var OWin = false; var largeTie = false; var smallTie = false;
+var XWin = false; var OWin = false; var largeTie = false; 
+var smallTie = false; var runGame = true;
 
 const box = document.getElementsByClassName("box");
 
-for(let i = 0; i < box.length; i++){
-    box[i].onclick = function(evt){
-        var buttonId = evt.target.id;
-        console.log("Button ", buttonId, " Clicked!");
-        var button = document.getElementById(buttonId);
-        // Create a new text node
-        var textNode = document.createTextNode(currentPlayer);
-        var charArray = buttonId.split(""); // Convert string to array of characters
-        var first = charArray[0]; // Access the first element of the array
-        var second = charArray[1]; // Access the second element of the array
-        arr[first][second] = currentPlayer;
-        printBoard(arr);
-        // Replace the button with the text node
-        button.parentNode.replaceChild(textNode, button);
-        checkSmallWin(arr, buttonId, winArr, smallTie);
-        checkLargeWin(winArr, XWin, OWin, largeTie);
-        switchPlayers();
-        makeClickable(buttonId);
-    }
+while (runGame){
+  for(let i = 0; i < box.length; i++){
+      box[i].onclick = function(evt){
+          var buttonId = evt.target.id;
+          console.log("Button ", buttonId, " Clicked!");
+          var button = document.getElementById(buttonId);
+          // Create a new text node
+          var textNode = document.createTextNode(currentPlayer);
+          var charArray = buttonId.split(""); // Convert string to array of characters
+          var first = charArray[0]; // Access the first element of the array
+          var second = charArray[1]; // Access the second element of the array
+          arr[first][second] = currentPlayer;
+          printBoard(arr);
+          // Replace the button with the text node
+          button.parentNode.replaceChild(textNode, button);
+          checkSmallWin(arr, buttonId, winArr, smallTie);
+          checkLargeWin(winArr, XWin, OWin, largeTie);
+          switchPlayers();
+          makeClickable(buttonId);
+      }
+  }
 }
 
 function printBoard(arr){
@@ -81,7 +84,7 @@ function checkLargeWin(winArr, XWin, OWin, largeTie){
        winArr[0]=="X" && winArr[4]=="X" && winArr[8]=="X" || // large diagonal 1
        winArr[2]=="X" && winArr[4]=="X" && winArr[8]=="X" ){ // large diagonal 2
         console.log(winArr);
-        XWin = true; OWin = false; largeTie = false;
+        XWin = true; OWin = false; largeTie = false; runGame = false;
         console.log("XWin: ", XWin); console.log("OWin: ", OWin); console.log("LargeTie: ", largeTie);
         endGame(XWin, OWin, largeTie);
     }else if(winArr[0]=="O" && winArr[1]=="O" && winArr[2]=="O" || // first large row
@@ -93,7 +96,7 @@ function checkLargeWin(winArr, XWin, OWin, largeTie){
        winArr[0]=="O" && winArr[4]=="O" && winArr[8]=="O" || // large diagonal 1
        winArr[2]=="O" && winArr[4]=="O" && winArr[8]=="O" ){ // large diagonal 2
         console.log(winArr);
-        XWin = false; OWin = true; largeTie = false;
+        XWin = false; OWin = true; largeTie = false; runGame = false;
         console.log("XWin: ", XWin); console.log("OWin: ", OWin); console.log("LargeTie: ", largeTie);
         endGame(XWin, OWin, largeTie);
     }else{
@@ -101,7 +104,7 @@ function checkLargeWin(winArr, XWin, OWin, largeTie){
             if (winArr[i] === '') {
                 console.log(winArr);
                 console.log("winArr length: ", winArr.length);
-                XWin = false; OWin = false; largeTie = true;
+                XWin = false; OWin = false; largeTie = true; runGame = false;
                 console.log("XWin: ", XWin); console.log("OWin: ", OWin); console.log("LargeTie: ", largeTie);
                 endGame(XWin, OWin, largeTie);
             }
